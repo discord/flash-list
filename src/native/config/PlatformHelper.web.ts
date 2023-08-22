@@ -1,5 +1,5 @@
 import type React from "react";
-import type { ScrollViewProps, View } from "react-native";
+import { View, type ScrollViewProps } from "react-native";
 import type { BaseItemAnimator } from "recyclerlistview";
 import { DefaultJSItemAnimator } from "recyclerlistview/dist/reactnative/platform/reactnative/itemanimators/defaultjsanimator/DefaultJSItemAnimator";
 
