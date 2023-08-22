@@ -1,6 +1,6 @@
-import { BaseItemAnimator } from "recyclerlistview";
-import React from 'react';
-import {ScrollViewProps} from 'react-native';
+import type { BaseItemAnimator } from "recyclerlistview";
+import type React from "react";
+import type { ScrollViewProps } from "react-native";
 
 const PlatformConfig = {
   defaultDrawDistance: 250,
