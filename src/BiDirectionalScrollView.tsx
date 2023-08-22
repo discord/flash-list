@@ -10,11 +10,11 @@ import React, { Component, forwardRef } from "react";
 import {
   PixelRatio,
   Platform,
-  ScrollView as ScrollViewRN,
   ScrollViewProps,
   StyleSheet,
   View,
 } from "react-native";
+import { ScrollView as ScrollViewRN } from "@discordapp/gesture-aware-components";
 
 import { BidirectionalList } from "./BidirectionalList";
 import type { ShiftFunction } from "./types";
@@ -42,7 +42,7 @@ export class ScrollViewComponent extends ScrollViewRNRaw {
   };
 
   render() {
-    const NativeDirectionalScrollView = BidirectionalFlatlist;
+    const NativeDirectionalScrollView = BidirectionalList;
     const NativeDirectionalScrollContentView = View;
 
     const contentContainerStyle = [this.props.contentContainerStyle];

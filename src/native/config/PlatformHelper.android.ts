@@ -1,4 +1,6 @@
 import { BaseItemAnimator } from "recyclerlistview";
+import React from 'react';
+import {ScrollViewProps} from 'react-native';
 
 const PlatformConfig = {
   defaultDrawDistance: 250,
@@ -21,9 +23,20 @@ const getFooterContainer = (): React.ComponentClass | undefined => {
   return undefined;
 };
 
+const getBidirectionalScrollView = (
+  experimentalScrollPositionManagement: boolean,
+  renderScrollComponent:
+    | React.FC<ScrollViewProps>
+    | React.ComponentType<ScrollViewProps>
+    | undefined
+) => {
+  return undefined;
+};
+
 export {
   PlatformConfig,
   getCellContainerPlatformStyles,
   getItemAnimator,
   getFooterContainer,
+  getBidirectionalScrollView,
 };

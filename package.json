@@ -54,6 +54,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "*",
+    "@discordapp/gesture-aware-components": "1.0.0",
     "react": "*",
     "react-native": "*"
   },

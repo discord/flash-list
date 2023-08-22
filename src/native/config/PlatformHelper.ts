@@ -1,8 +1,7 @@
 import { Platform, ScrollViewProps } from "react-native";
-import type * as React from "react";
+import type React from "react";
 import type { BaseItemAnimator, RecyclerListViewProps } from "recyclerlistview";
 import { DefaultJSItemAnimator } from "recyclerlistview/dist/reactnative/platform/reactnative/itemanimators/defaultjsanimator/DefaultJSItemAnimator";
-import React from "react";
 
 import { BidirectionalScrollView } from "../../BiDirectionalScrollView";
 
