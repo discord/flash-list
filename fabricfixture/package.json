@@ -1,0 +1,43 @@
+{
+  "name": "fabricfixture",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.72.5",
+    "@shopify/flash-list": "link:../"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/eslint-config": "^0.72.2",
+    "@react-native/metro-config": "^0.72.11",
+    "@tsconfig/react-native": "^3.0.0",
+    "@types/react": "^18.0.24",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.2.1",
+    "eslint": "^8.19.0",
+    "jest": "^29.2.1",
+    "metro-react-native-babel-preset": "0.76.8",
+    "prettier": "^2.4.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4",
+    "@types/jest": "^29.5.5",
+    "@types/pixelmatch": "^5.2.4",
+    "@types/pngjs": "^6.0.2",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
