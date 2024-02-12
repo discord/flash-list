@@ -48,6 +48,7 @@ class ViewabilityHelper {
   public updateViewableItems(
     horizontal: boolean,
     scrollOffset: number,
+    bottomViewabilityInset: number,
     listSize: Dimension,
     getLayout: (index: number) => Layout | undefined,
     viewableIndices?: number[]
@@ -76,6 +77,7 @@ class ViewabilityHelper {
         index,
         horizontal,
         scrollOffset,
+        bottomViewabilityInset,
         listSize,
         this.viewabilityConfig?.viewAreaCoveragePercentThreshold,
         this.viewabilityConfig?.itemVisiblePercentThreshold,
@@ -126,6 +128,7 @@ class ViewabilityHelper {
     index: number,
     horizontal: boolean,
     scrollOffset: number,
+    bottomViewabilityInset: number,
     listSize: Dimension,
     viewAreaCoveragePercentThreshold: number | null | undefined,
     itemVisiblePercentThreshold: number | null | undefined,
@@ -137,7 +140,9 @@ class ViewabilityHelper {
     }
     const itemTop = (horizontal ? itemLayout.x : itemLayout.y) - scrollOffset;
     const itemSize = horizontal ? itemLayout.width : itemLayout.height;
-    const listMainSize = horizontal ? listSize.width : listSize.height;
+    const listMainSize = horizontal
+      ? listSize.width
+      : listSize.height - bottomViewabilityInset;
     const pixelsVisible =
       Math.min(itemTop + itemSize, listMainSize) - Math.max(itemTop, 0);
 
