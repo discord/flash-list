@@ -256,6 +256,7 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper,
     horizontal,
     scrollOffset,
+    bottomVisibilityInset,
     listSize,
     getLayout,
     runAllTimers,
@@ -263,6 +264,7 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper: ViewabilityHelper;
     horizontal?: boolean;
     scrollOffset?: number;
+    bottomVisibilityInset?: number;
     listSize?: Dimension;
     getLayout?: (index: number) => Layout | undefined;
     runAllTimers?: boolean;
@@ -270,11 +272,12 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper.updateViewableItems(
       horizontal ?? false,
       scrollOffset ?? 0,
+      bottomVisibilityInset ?? 0,
       listSize ?? { height: 300, width: 300 },
       getLayout ??
         ((index) => {
           return { x: 0, y: index * 100, height: 100, width: 300 } as Layout;
-        })
+        }),
     );
     if (runAllTimers ?? true) {
       jest.runAllTimers();

@@ -48,9 +48,10 @@ class ViewabilityHelper {
   public updateViewableItems(
     horizontal: boolean,
     scrollOffset: number,
+    bottomVisibilityInset: number,
     listSize: Dimension,
     getLayout: (index: number) => Layout | undefined,
-    viewableIndices?: number[]
+    viewableIndices?: number[],
   ) {
     if (viewableIndices !== undefined) {
       this.possiblyViewableIndices = viewableIndices;
