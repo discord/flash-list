@@ -283,10 +283,6 @@ class FlashList<T> extends React.PureComponent<
     return null;
   };
 
-  updateViewableItems() {
-    this.viewabilityManager.updateViewableItems();
-  }
-
   componentDidMount() {
     if (this.props.data?.length === 0) {
       this.raiseOnLoadEventIfNeeded();
@@ -788,6 +784,10 @@ class FlashList<T> extends React.PureComponent<
     } else {
       this.rlvRef?.prepareForLayoutAnimationRender();
     }
+  }
+
+  public updateViewableItems() {
+    this.viewabilityManager.updateViewableItems();
   }
 
   public scrollToEnd(params?: { animated?: boolean | null | undefined }) {
