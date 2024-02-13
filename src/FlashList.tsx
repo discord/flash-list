@@ -880,24 +880,30 @@ class FlashList<T> extends React.PureComponent<
   };
 }
 
-const FlashListComponent = React.forwardRef(FlashList);
+export default FlashList;
 
-/**
- * Wrap the component using method 2 in https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
- * to support the forward ref with a generic type.
- */
-const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> & {myRef: React.Ref<typeof FlashListComponent>}) => {
-  const flashListRef = React.useRef<FlashList<T> | null>(null);
+// const FlashListComponent = React.forwardRef(FlashList) as <T extends any>(props: FlashListProps<T> & { ref?: React.Ref<FlashList<T>> }) => {
+//   React.useImperativeHandle(ref, () => ({
+//         updateViewabableItems: () => ref?.current?.updateViewableItems(),
+//       }), [])
 
-  React.useImperativeHandle(flashListRef, () => ({
-    updateViewabableItems: () => flashListRef.current?.updateViewableItems(),
-  }), []);
+//   return <FlashList ref={ref} {...props} />
+// }
 
-  return<FlashListComponent ref={flashListRef} {...props} />;
-}
 
-/**
- * Then wrap this in another forwardRef because createAnimatedComponent only works with
- * class components or components wrapped in React.forwardRef().
- */
-export default React.forwardRef(FlashListComponentWrapper);
+// const FRefOutputComp1 = React.forwardRef(FRefInputComp) as
+//   <T extends Option>(p: Props<T> & { ref?: Ref<HTMLDivElement> }) => ReactElement
+
+// const FlashListComponent = React.forwardRef(FlashList);
+
+// const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> & {myRef: React.Ref<typeof FlashListComponent>}) => {
+//   const flashListRef = React.useRef<FlashList<T> | null>(null);
+
+//   React.useImperativeHandle(flashListRef, () => ({
+//     updateViewabableItems: () => flashListRef.current?.updateViewableItems(),
+//   }), []);
+
+//   return<FlashListComponent ref={flashListRef} {...props} />;
+// }
+
+// export default FlashListComponentWrapper;
