@@ -277,7 +277,7 @@ describe("ViewabilityHelper", () => {
       getLayout ??
         ((index) => {
           return { x: 0, y: index * 100, height: 100, width: 300 } as Layout;
-        }),
+        })
     );
     if (runAllTimers ?? true) {
       jest.runAllTimers();

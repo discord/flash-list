@@ -51,7 +51,7 @@ class ViewabilityHelper {
     bottomVisibilityInset: number,
     listSize: Dimension,
     getLayout: (index: number) => Layout | undefined,
-    viewableIndices?: number[],
+    viewableIndices?: number[]
   ) {
     if (viewableIndices !== undefined) {
       this.possiblyViewableIndices = viewableIndices;
@@ -77,6 +77,7 @@ class ViewabilityHelper {
         index,
         horizontal,
         scrollOffset,
+        bottomVisibilityInset,
         listSize,
         this.viewabilityConfig?.viewAreaCoveragePercentThreshold,
         this.viewabilityConfig?.itemVisiblePercentThreshold,
@@ -123,6 +124,7 @@ class ViewabilityHelper {
     index: number,
     horizontal: boolean,
     scrollOffset: number,
+    bottomVisibilityInset: number,
     listSize: Dimension,
     viewAreaCoveragePercentThreshold: number | null | undefined,
     itemVisiblePercentThreshold: number | null | undefined,
