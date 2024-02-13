@@ -535,6 +535,8 @@ class FlashList<T> extends React.PureComponent<
       ? event.nativeEvent.layout.x
       : event.nativeEvent.layout.y;
 
+    console.log(`pikachu FlashList updateDistanceFromWindow. newDistanceFromWindow: ${newDistanceFromWindow}. distanceFromWindow: ${this.distanceFromWindow}`)
+
     if (this.distanceFromWindow !== newDistanceFromWindow) {
       this.distanceFromWindow = newDistanceFromWindow;
       this.windowCorrectionConfig.value.windowShift = -this.distanceFromWindow;
