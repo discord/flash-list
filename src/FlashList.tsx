@@ -882,6 +882,10 @@ class FlashList<T> extends React.PureComponent<
 
 const FlashListComponent = React.forwardRef(FlashList);
 
+/**
+ * Wrap the component using method 2 in https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
+ * to support the forward ref with a generic type.
+ */
 const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> & {myRef: React.Ref<typeof FlashListComponent>}) => {
   const flashListRef = React.useRef<FlashList<T> | null>(null);
 
@@ -892,4 +896,8 @@ const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> 
   return<FlashListComponent ref={flashListRef} {...props} />;
 }
 
-export default FlashListComponentWrapper;
+/**
+ * Then wrap this in another forwardRef because createAnimatedComponent only works with
+ * class components or components wrapped in React.forwardRef().
+ */
+export default React.forwardRef(FlashListComponentWrapper);
