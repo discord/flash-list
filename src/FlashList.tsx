@@ -283,6 +283,10 @@ class FlashList<T> extends React.PureComponent<
     return null;
   };
 
+  updateViewableItems() {
+    this.viewabilityManager.updateViewableItems();
+  }
+
   componentDidMount() {
     if (this.props.data?.length === 0) {
       this.raiseOnLoadEventIfNeeded();
@@ -876,4 +880,16 @@ class FlashList<T> extends React.PureComponent<
   };
 }
 
-export default FlashList;
+const FlashListComponent = React.forwardRef(FlashList);
+
+const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> & {myRef: React.Ref<typeof FlashListComponent>}) => {
+  const flashListRef = React.useRef<FlashList<T> | null>(null);
+
+  React.useImperativeHandle(flashListRef, () => ({
+    updateViewabableItems: () => flashListRef.current?.updateViewableItems(),
+  }), []);
+
+  return<FlashListComponent ref={flashListRef} {...props} />;
+}
+
+export default FlashListComponentWrapper;
