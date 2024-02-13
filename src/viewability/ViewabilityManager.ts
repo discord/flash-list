@@ -78,7 +78,7 @@ export default class ViewabilityManager<T> {
         0) - this.flashListRef.firstItemOffset;
 
     const bottomViewabilityInset =
-      this.flashListRef.props.bottomViewabilityInsetRef.current ?? 0;
+      this.flashListRef.props.bottomViewabilityInsetRef?.current ?? 0;
 
     this.viewabilityHelpers.forEach((viewabilityHelper) => {
       viewabilityHelper.updateViewableItems(
