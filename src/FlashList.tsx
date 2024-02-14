@@ -879,29 +879,3 @@ class FlashList<T> extends React.PureComponent<
 }
 
 export default FlashList;
-
-// const FlashListComponent = React.forwardRef(FlashList) as <T extends any>(props: FlashListProps<T> & { ref?: React.Ref<FlashList<T>> }) => {
-//   React.useImperativeHandle(ref, () => ({
-//         updateViewabableItems: () => ref?.current?.updateViewableItems(),
-//       }), [])
-
-//   return <FlashList ref={ref} {...props} />
-// }
-
-
-// const FRefOutputComp1 = React.forwardRef(FRefInputComp) as
-//   <T extends Option>(p: Props<T> & { ref?: Ref<HTMLDivElement> }) => ReactElement
-
-// const FlashListComponent = React.forwardRef(FlashList);
-
-// const FlashListComponentWrapper = <T extends any>({...props}: FlashListProps<T> & {myRef: React.Ref<typeof FlashListComponent>}) => {
-//   const flashListRef = React.useRef<FlashList<T> | null>(null);
-
-//   React.useImperativeHandle(flashListRef, () => ({
-//     updateViewabableItems: () => flashListRef.current?.updateViewableItems(),
-//   }), []);
-
-//   return<FlashListComponent ref={flashListRef} {...props} />;
-// }
-
-// export default FlashListComponentWrapper;
