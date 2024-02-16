@@ -140,6 +140,8 @@ class ViewabilityHelper {
     const pixelsVisible =
       Math.min(itemTop + itemSize, listMainSize) - Math.max(itemTop, 0);
 
+    console.log(`pikachu isItemViewable. index: ${index}, itemTop: ${itemTop}, itemSize: ${itemSize}, listMainSize: ${listMainSize}, pixelsVisible: ${pixelsVisible}. scrollOffset: ${scrollOffset}. bottomViewabilityInset: ${bottomViewabilityInset}`)
+
     // Always consider item fully viewable if it is fully visible, regardless of the `viewAreaCoveragePercentThreshold`
     // Account for floating point imprecision.
     if (Math.abs(pixelsVisible - itemSize) <= 0.001) {
