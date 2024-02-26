@@ -8,8 +8,8 @@ const PlatformConfig = {
   invertedTransformStyleHorizontal: { transform: [{ scaleX: -1 }] },
 };
 const getCellContainerPlatformStyles = (
-  inverted: boolean,
-  parentProps: { x: number; y: number; isHorizontal?: boolean }
+  _inverted: boolean,
+  _parentProps: { x: number; y: number; isHorizontal?: boolean }
 ): { transform: string; WebkitTransform: string } | undefined => {
   return undefined;
 };

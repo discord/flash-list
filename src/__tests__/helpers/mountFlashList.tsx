@@ -4,7 +4,7 @@ import "@quilted/react-testing/matchers";
 import { render, Root } from "@quilted/react-testing";
 
 import FlashList from "../../FlashList";
-import { FlashListProps, ListRenderItem } from "../../FlashListProps";
+import type { FlashListProps, ListRenderItem } from "../../FlashListProps";
 
 jest.mock("../../FlashList", () => {
   const ActualFlashList = jest.requireActual("../../FlashList").default;
