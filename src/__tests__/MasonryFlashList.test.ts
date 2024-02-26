@@ -3,11 +3,11 @@ import "@quilted/react-testing/matchers";
 import { ProgressiveListView } from "recyclerlistview";
 import React from "react";
 
-import {
+import type {
   MasonryFlashListProps,
   MasonryFlashListRef,
 } from "../MasonryFlashList";
-import FlashList from "../FlashList";
+import type FlashList from "../FlashList";
 
 import { mountMasonryFlashList } from "./helpers/mountMasonryFlashList";
 

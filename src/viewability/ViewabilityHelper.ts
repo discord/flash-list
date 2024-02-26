@@ -89,8 +89,10 @@ class ViewabilityHelper {
     // Setting default to 250. Default of 0 can impact performance when user scrolls fast.
     if (minimumViewTime > 0) {
       const timeoutId = setTimeout(() => {
+        // @ts-expect-error For some reason this is NodeJS.Timeout instead of number
         this.timers.delete(timeoutId);
         this.checkViewableIndicesChanges(newViewableIndices);
+        // @ts-expect-error For some reason this is NodeJS.Timeout instead of number
         this.timers.add(timeoutId);
       }, minimumViewTime);
     } else {

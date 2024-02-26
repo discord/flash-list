@@ -6,7 +6,7 @@ import {
   BlankAreaTrackerResult,
   useBlankAreaTracker,
 } from "../benchmark/useBlankAreaTracker";
-import FlashList from "../FlashList";
+import type FlashList from "../FlashList";
 
 import { MockFlashListProps, renderFlashList } from "./helpers/mountFlashList";
 

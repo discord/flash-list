@@ -3,11 +3,11 @@ import { Text } from "react-native";
 import "@quilted/react-testing/matchers";
 import { mount, Root } from "@quilted/react-testing";
 
-import { ListRenderItem } from "../../FlashListProps";
 import {
   MasonryFlashList,
   MasonryFlashListProps,
   MasonryFlashListRef,
+  type MasonryListRenderItem,
 } from "../../MasonryFlashList";
 
 jest.mock("../../FlashList", () => {
@@ -34,7 +34,7 @@ export type MockMasonryFlashListProps = Omit<
 > & {
   estimatedItemSize?: number;
   data?: string[];
-  renderItem?: ListRenderItem<string>;
+  renderItem?: MasonryListRenderItem<string>;
 };
 
 /**
