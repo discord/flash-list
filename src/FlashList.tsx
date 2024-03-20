@@ -54,6 +54,8 @@ export interface FlashListState<T> {
   numColumns: number;
   layoutProvider: GridLayoutProviderWithProps<T>;
   data?: ReadonlyArray<T> | null;
+  dataKey: string | null;
+  didDataKeyChange: boolean;
   extraData?: ExtraData<unknown>;
   renderItem?: FlashListProps<T>["renderItem"];
 }
@@ -66,7 +68,7 @@ class FlashList<T> extends React.PureComponent<
   FlashListProps<T>,
   FlashListState<T>
 > {
-  private rlvRef?: RecyclerListView<RecyclerListViewProps, any>;
+  private rlvRef: RecyclerListView<RecyclerListViewProps, any> | null;
   private stickyContentContainerRef?: PureComponentWrapper;
   private listFixedDimensionSize = 0;
   private transformStyle = PlatformConfig.invertedTransformStyle;
@@ -181,10 +183,17 @@ class FlashList<T> extends React.PureComponent<
       !prevState.layoutProvider?.hasExpired
     );
 
+    const didDataKeyChange = false;
+    if ((nextProps.dataKey ?? null) !== prevState.dataKey) {
+      newState.dataKey = nextProps.dataKey ?? null;
+      newState.didDataKeyChange = true;
+    }
     if (nextProps.data !== prevState.data) {
       newState.data = nextProps.data;
       newState.dataProvider = prevState.dataProvider.cloneWithRows(
-        nextProps.data as any[]
+        nextProps.data as any[],
+        undefined,
+        didDataKeyChange
       );
       if (nextProps.renderItem !== prevState.renderItem) {
         newState.extraData = { ...prevState.extraData };
@@ -215,6 +224,8 @@ class FlashList<T> extends React.PureComponent<
     }
     return {
       data: null,
+      dataKey: flashList.props.dataKey ?? null,
+      didDataKeyChange: false,
       layoutProvider: null!!,
       dataProvider: new DataProvider((r1, r2) => {
         return r1 !== r2;
@@ -294,6 +305,12 @@ class FlashList<T> extends React.PureComponent<
     this.clearPostLoadTimeout();
     if (this.sizeWarningTimeoutId !== undefined) {
       clearTimeout(this.sizeWarningTimeoutId);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.didDataKeyChange) {
+      this.rlvRef?.prepareForLayoutAnimationRender();
     }
   }
 

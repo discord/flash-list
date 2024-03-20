@@ -344,4 +344,9 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * can consider the visible area of the bottom sheet in its calculations.
    */
   bottomViewabilityInsetRef?: React.MutableRefObject<number>;
+
+  /**
+   * If the FlashList is expected to switch between discrete `data` arrays, assign a `dataKey` associated with the data set to enable optimizations in the re-render when the data changes.
+   */
+  dataKey?: string;
 }
