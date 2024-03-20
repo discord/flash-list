@@ -329,6 +329,7 @@ class FlashList<T> extends React.PureComponent<
       style,
       contentContainerStyle,
       renderScrollComponent,
+      disableProgressiveRendering,
       ...restProps
     } = this.props;
 
@@ -347,6 +348,10 @@ class FlashList<T> extends React.PureComponent<
         ? PlatformConfig.defaultDrawDistance
         : drawDistance;
 
+    const ListViewComponent = disableProgressiveRendering
+      ? RecyclerListView
+      : ProgressiveListView;
+
     return (
       <StickyHeaderContainer
         overrideRowRenderer={this.stickyOverrideRowRenderer}
@@ -358,7 +363,7 @@ class FlashList<T> extends React.PureComponent<
             : { flex: 1, overflow: "hidden", ...this.getTransform() }
         }
       >
-        <ProgressiveListView
+        <ListViewComponent
           {...restProps}
           ref={this.recyclerRef}
           layoutProvider={this.state.layoutProvider}
@@ -392,9 +397,15 @@ class FlashList<T> extends React.PureComponent<
           onEndReachedThresholdRelative={onEndReachedThreshold || undefined}
           extendedState={this.state.extraData}
           layoutSize={estimatedListSize}
-          maxRenderAhead={3 * finalDrawDistance}
-          finalRenderAheadOffset={finalDrawDistance}
-          renderAheadStep={finalDrawDistance}
+          {...(disableProgressiveRendering
+            ? {
+                renderAheadOffset: finalDrawDistance,
+              }
+            : {
+                maxRenderAhead: 3 * finalDrawDistance,
+                finalRenderAheadOffset: finalDrawDistance,
+                renderAheadStep: finalDrawDistance,
+              })}
           initialRenderIndex={
             (!this.isInitialScrollIndexInFirstRow() && initialScrollIndex) ||
             undefined

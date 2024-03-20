@@ -349,4 +349,9 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * If the FlashList is expected to switch between discrete `data` arrays, assign a `dataKey` associated with the data set to enable optimizations in the re-render when the data changes.
    */
   dataKey?: string;
+
+  /**
+   * Use a RecyclerListView instead of ProgressiveListView internally, may increase mount cost but improve performance when data changes.
+   */
+  disableProgressiveRendering?: boolean;
 }
