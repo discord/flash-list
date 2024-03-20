@@ -310,7 +310,9 @@ class FlashList<T> extends React.PureComponent<
 
   componentDidUpdate() {
     if (this.state.didDataKeyChange) {
-      this.rlvRef?.prepareForLayoutAnimationRender();
+      this.rlvRef?.prepareForLayoutAnimationRender(
+        true /* scrollToInitialOffset */
+      );
     }
   }
 
