@@ -68,7 +68,7 @@ class FlashList<T> extends React.PureComponent<
   FlashListProps<T>,
   FlashListState<T>
 > {
-  private rlvRef: RecyclerListView<RecyclerListViewProps, any> | null;
+  private rlvRef?: RecyclerListView<RecyclerListViewProps, any>;
   private stickyContentContainerRef?: PureComponentWrapper;
   private listFixedDimensionSize = 0;
   private transformStyle = PlatformConfig.invertedTransformStyle;
@@ -308,14 +308,6 @@ class FlashList<T> extends React.PureComponent<
     }
   }
 
-  componentDidUpdate() {
-    if (this.state.didDataKeyChange) {
-      this.rlvRef?.prepareForLayoutAnimationRender(
-        true /* scrollToInitialOffset */
-      );
-    }
-  }
-
   render() {
     this.isEmptyList = this.state.dataProvider.getSize() === 0;
     updateContentStyle(this.contentStyle, this.props.contentContainerStyle);
@@ -370,6 +362,7 @@ class FlashList<T> extends React.PureComponent<
           ref={this.recyclerRef}
           layoutProvider={this.state.layoutProvider}
           dataProvider={this.state.dataProvider}
+          dataKey={this.state.dataKey}
           rowRenderer={this.emptyRowRenderer}
           canChangeSize
           isHorizontal={Boolean(horizontal)}
