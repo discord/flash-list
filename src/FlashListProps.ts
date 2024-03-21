@@ -187,6 +187,8 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    */
   initialScrollIndex?: number | null | undefined;
 
+  initialScrollViewPosition?: number | null | undefined;
+
   /**
    * Reverses the direction of scroll. Uses scale transforms of -1.
    */
