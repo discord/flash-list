@@ -43,6 +43,28 @@ import {
   updateContentStyle,
 } from "./utils/ContentContainerUtils";
 
+function shallowEqual(a: any, b: any) {
+  if (a === b) {
+    return true;
+  }
+  if (a == null || b == null) {
+    return a == b;
+  }
+
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+  for (let i = 0; i < keysA.length; i++) {
+    const key = keysA[i];
+    if (a[key] !== b[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 interface StickyProps extends StickyContainerProps {
   children: any;
 }
@@ -218,7 +240,7 @@ class FlashList<T> extends React.PureComponent<
       data: null,
       layoutProvider: null!!,
       dataProvider: new DataProvider((r1, r2) => {
-        return r1 !== r2;
+        return !shallowEqual(r1, r2);
       }, getStableId),
       numColumns: 0,
     };
