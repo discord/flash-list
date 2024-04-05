@@ -79,12 +79,15 @@ export default class ViewabilityManager<T> {
 
     const bottomViewabilityInset =
       this.flashListRef.props.bottomViewabilityInsetRef?.current ?? 0;
+    const topViewabilityInset =
+      this.flashListRef.props.topViewabilityInsetRef?.current ?? 0;
 
     this.viewabilityHelpers.forEach((viewabilityHelper) => {
       viewabilityHelper.updateViewableItems(
         this.flashListRef.props.horizontal ?? false,
         scrollOffset,
         bottomViewabilityInset,
+        topViewabilityInset,
         listSize,
         (index: number) =>
           this.flashListRef.recyclerlistview_unsafe?.getLayout(index),

@@ -49,6 +49,7 @@ class ViewabilityHelper {
     horizontal: boolean,
     scrollOffset: number,
     bottomViewabilityInset: number,
+    topViewabilityInset: number,
     listSize: Dimension,
     getLayout: (index: number) => Layout | undefined,
     viewableIndices?: number[]
@@ -78,6 +79,7 @@ class ViewabilityHelper {
         horizontal,
         scrollOffset,
         bottomViewabilityInset,
+        topViewabilityInset,
         listSize,
         this.viewabilityConfig?.viewAreaCoveragePercentThreshold,
         this.viewabilityConfig?.itemVisiblePercentThreshold,
@@ -127,6 +129,7 @@ class ViewabilityHelper {
     horizontal: boolean,
     scrollOffset: number,
     bottomViewabilityInset: number,
+    topViewabilityInset: number,
     listSize: Dimension,
     viewAreaCoveragePercentThreshold: number | null | undefined,
     itemVisiblePercentThreshold: number | null | undefined,
@@ -137,27 +140,30 @@ class ViewabilityHelper {
       return false;
     }
     const itemTop = (horizontal ? itemLayout.x : itemLayout.y) - scrollOffset;
-    const itemSize = horizontal ? itemLayout.width : itemLayout.height;
-    const listMainSize = horizontal
-      ? listSize.width
-      : listSize.height - bottomViewabilityInset;
-    const pixelsVisible =
-      Math.min(itemTop + itemSize, listMainSize) - Math.max(itemTop, 0);
+    const itemEnd =
+      itemTop + (horizontal ? itemLayout.width : itemLayout.height);
+    const listStart = topViewabilityInset;
+    const listEnd =
+      (horizontal ? listSize.width : listSize.height) - bottomViewabilityInset;
+    const visibleStart = Math.max(itemTop, listStart);
+    const visibleEnd = Math.min(itemEnd, listEnd);
+    const pixelsVisible = Math.max(0, visibleEnd - visibleStart);
 
     // Always consider item fully viewable if it is fully visible, regardless of the `viewAreaCoveragePercentThreshold`
     // Account for floating point imprecision.
+    const itemSize = horizontal ? itemLayout.width : itemLayout.height;
     if (Math.abs(pixelsVisible - itemSize) <= 0.001) {
       return true;
     }
     // Skip checking item if it's not visible at all
-    if (pixelsVisible === 0) {
+    if (pixelsVisible <= 0) {
       return false;
     }
     const viewAreaMode =
       viewAreaCoveragePercentThreshold !== null &&
       viewAreaCoveragePercentThreshold !== undefined;
     const percent = viewAreaMode
-      ? pixelsVisible / listMainSize
+      ? pixelsVisible / (listEnd - listStart)
       : pixelsVisible / itemSize;
     const viewableAreaPercentThreshold = viewAreaMode
       ? viewAreaCoveragePercentThreshold * 0.01
