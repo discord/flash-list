@@ -344,4 +344,5 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * can consider the visible area of the bottom sheet in its calculations.
    */
   bottomViewabilityInsetRef?: React.MutableRefObject<number>;
+  topViewabilityInsetRef?: React.MutableRefObject<number>;
 }

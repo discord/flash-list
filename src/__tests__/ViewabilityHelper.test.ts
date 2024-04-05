@@ -257,6 +257,7 @@ describe("ViewabilityHelper", () => {
     horizontal,
     scrollOffset,
     bottomViewabilityInset,
+    topViewabilityInset,
     listSize,
     getLayout,
     runAllTimers,
@@ -265,6 +266,7 @@ describe("ViewabilityHelper", () => {
     horizontal?: boolean;
     scrollOffset?: number;
     bottomViewabilityInset?: number;
+    topViewabilityInset?: number;
     listSize?: Dimension;
     getLayout?: (index: number) => Layout | undefined;
     runAllTimers?: boolean;
@@ -273,6 +275,7 @@ describe("ViewabilityHelper", () => {
       horizontal ?? false,
       scrollOffset ?? 0,
       bottomViewabilityInset ?? 0,
+      topViewabilityInset ?? 0,
       listSize ?? { height: 300, width: 300 },
       getLayout ??
         ((index) => {
