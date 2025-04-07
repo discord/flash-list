@@ -663,7 +663,6 @@ class FlashList<T> extends React.PureComponent<
     return React.isValidElement(PassedComponent) ? (
       PassedComponent
     ) : (
-      // @ts-expect-error not sure how to type this properly
       <PassedComponent />
     );
   }
@@ -689,7 +688,7 @@ class FlashList<T> extends React.PureComponent<
       index,
       target,
       extraData: this.state.extraData?.value,
-    }) as JSX.Element;
+    }) as React.JSX.Element;
   };
 
   /**
