@@ -1,4 +1,4 @@
-export { default as FlashList } from "./FlashList";
+export { default as FlashList } from "./v1/FlashList";
 export {
   FlashListProps,
   ContentStyle,
@@ -6,27 +6,27 @@ export {
   ListRenderItemInfo,
   RenderTarget,
   RenderTargetOptions,
-} from "./FlashListProps";
+} from "./v1/FlashListProps";
 export {
   useOnNativeBlankAreaEvents,
   BlankAreaEventHandler,
   BlankAreaEvent,
-} from "./native/auto-layout/AutoLayoutView";
+} from "./v1/native/auto-layout/AutoLayoutView";
 export {
   useBenchmark,
   BenchmarkParams,
   BenchmarkResult,
-} from "./benchmark/useBenchmark";
-export { useDataMultiplier } from "./benchmark/useDataMultiplier";
+} from "./v1/benchmark/useBenchmark";
+export { useDataMultiplier } from "./v1/benchmark/useDataMultiplier";
 export {
   useFlatListBenchmark,
   FlatListBenchmarkParams,
-} from "./benchmark/useFlatListBenchmark";
+} from "./v1/benchmark/useFlatListBenchmark";
 export {
   useBlankAreaTracker,
   BlankAreaTrackerResult,
   BlankAreaTrackerConfig,
-} from "./benchmark/useBlankAreaTracker";
+} from "./v1/benchmark/useBlankAreaTracker";
 export {
   MasonryFlashList,
   MasonryFlashListProps,
@@ -35,8 +35,8 @@ export {
   MasonryListItem,
   MasonryListRenderItem,
   MasonryListRenderItemInfo,
-} from "./MasonryFlashList";
-export { JSFPSMonitor, JSFPSResult } from "./benchmark/JSFPSMonitor";
-export { autoScroll, Cancellable } from "./benchmark/AutoScrollHelper";
-export { default as ViewToken } from "./viewability/ViewToken";
-export { default as CellContainer } from "./native/cell-container/CellContainer";
+} from "./v1/MasonryFlashList";
+export { JSFPSMonitor, JSFPSResult } from "./v1/benchmark/JSFPSMonitor";
+export { autoScroll, Cancellable } from "./v1/benchmark/AutoScrollHelper";
+export { default as ViewToken } from "./v1/viewability/ViewToken";
+export { default as CellContainer } from "./v1/native/cell-container/CellContainer";
