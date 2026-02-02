@@ -94,8 +94,8 @@
     "jsSrcsDir": "./src/specs",
     "ios": {
       "componentProvider": {
-        "AutoLayoutView": "AutoLayoutView",
-        "CellContainerView": "CellContainerView"
+        "AutoLayoutView": "AutoLayoutViewComponentView",
+        "CellContainer": "CellContainerComponentView"
       }
     }
   }
