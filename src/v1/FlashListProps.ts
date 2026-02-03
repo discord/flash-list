@@ -75,6 +75,7 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * A quick look at `Element Inspector` can help you determine this. If you're confused between two values, the smaller value is a better choice.
    * For vertical lists provide average height and for horizontal average width.
    * Read more about it here: https://shopify.github.io/flash-list/docs/estimated-item-size
+   * @deprecated This prop is deprecated it's not supported in v2.
    */
   estimatedItemSize?: number;
 
@@ -162,11 +163,13 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * Needed if you're using initialScrollIndex prop. Before the initial draw the list cannot figure out the size of header or, any special margin/padding that might have been applied
    * using header styles etc.
    * If this isn't provided initialScrollIndex might not scroll to the provided index.
+   * @deprecated This prop is deprecated, it's not supported in v2.
    */
   estimatedFirstItemOffset?: number;
 
   /**
    * Visible height and width of the list. This is not the scroll content size.
+   * @deprecated This prop is deprecated, it's not supported in v2.
    */
   estimatedListSize?: { height: number; width: number };
 
@@ -189,6 +192,7 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
 
   /**
    * Reverses the direction of scroll. Uses scale transforms of -1.
+   * @deprecated This prop is deprecated, it's supported in v2.
    */
   inverted?: boolean | null | undefined;
 
@@ -215,11 +219,13 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * }
    * Please note that this event isn't synced with onScroll event but works with native onDraw/layoutSubviews. Events with values > 0 are blanks.
    * This event is raised even when there is no visible blank with negative values for extensibility however, for most use cases check blankArea > 0 and use the value.
+   * @deprecated This prop is deprecated, it's no longer supported in v2.
    */
   onBlankArea?: BlankAreaEventHandler;
 
   /**
    * Called once when the scroll position gets within onEndReachedThreshold of the rendered content.
+   * @deprecated This prop is deprecated, it's not supported in v2.
    */
   onEndReached?: (() => void) | null | undefined;
 
@@ -325,6 +331,7 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * FlashList attempts to measure size of horizontal lists by drawing an extra list item in advance. This can sometimes cause issues when used with `initialScrollIndex` in lists
    * with very little content. You might see some amount of over scroll. When set to true the list's rendered size needs to be deterministic (i.e., height and width greater than 0)
    * as FlashList will skip rendering the extra item for measurement. Default value is `false`.
+   * @deprecated This prop is deprecated, it's no longer needed in v2.
    */
   disableHorizontalListHeightMeasurement?: boolean;
 
@@ -333,6 +340,7 @@ export interface FlashListProps<TItem> extends ScrollViewProps {
    * implementations. You can disable this behavior by setting this to `true`.
    * Recommendation: Set this to `true` while you apply special behavior to the `CellRendererComponent`. Once done set this to
    * `false` again.
+   * @deprecated This prop is deprecated in v1 and not supported in v2.
    */
   disableAutoLayout?: boolean;
 
