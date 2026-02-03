@@ -38,7 +38,7 @@ export const FlashList = isNewArch() ? FlashListV2 : FlashListV1;
 export type FlashListProps<TItem> = FlashListPropsV1<TItem> &
   FlashListPropsV2<TItem>;
 export {
-  ContentStyle, // doesn't exist in v2
+  ContentStyle, // ATTENTION, doesn't exist in v2
   ListRenderItem, // the same v1/v2
   ListRenderItemInfo, // the same v1/v2
   RenderTarget, // the same v1/v2

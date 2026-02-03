@@ -35,6 +35,9 @@ export type ListRenderItem<TItem> = (
   info: ListRenderItemInfo<TItem>
 ) => React.ReactElement | null;
 
+/**
+ * @deprecated This type is deprecated in v1 and not supported in v2.
+ */
 export type ContentStyle = Pick<
   ViewStyle,
   | "backgroundColor"
@@ -47,7 +50,8 @@ export type ContentStyle = Pick<
   | "paddingHorizontal"
 >;
 
-export interface FlashListProps<TItem> extends ScrollViewProps {
+export interface FlashListProps<TItem>
+  extends Omit<ScrollViewProps, "maintainVisibleContentPosition"> {
   /**
    * Takes an item from `data` and renders it into the list. Typical usage:
    * ```ts

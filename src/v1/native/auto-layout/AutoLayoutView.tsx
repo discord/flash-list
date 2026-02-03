@@ -4,9 +4,15 @@ import type { LayoutChangeEvent } from "react-native";
 import AutoLayoutViewNativeComponent from "./AutoLayoutViewNativeComponent";
 import type { OnBlankAreaEvent } from "./AutoLayoutViewNativeComponentProps";
 
+/**
+ * @deprecated This type is deprecated in v1 and not supported in v2.
+ */
 export type BlankAreaEventHandler = (blankAreaEvent: BlankAreaEvent) => void;
 const listeners: BlankAreaEventHandler[] = [];
 
+/**
+ * @deprecated This hook is deprecated in v1 and not supported in v2.
+ */
 export const useOnNativeBlankAreaEvents = (
   onBlankAreaEvent: (blankAreaEvent: BlankAreaEvent) => void
 ) => {
@@ -18,6 +24,9 @@ export const useOnNativeBlankAreaEvents = (
   }, [onBlankAreaEvent]);
 };
 
+/**
+ * @deprecated This interface is deprecated in v1 and not supported in v2.
+ */
 export interface BlankAreaEvent {
   offsetStart: number;
   offsetEnd: number;
