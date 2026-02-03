@@ -1,6 +1,8 @@
-// This is a temporary compatibility layer between FlashList v1(1.7.2) and v2(2.2.0), so that we can use v2 on new arch and v1 on old arch
-// We need to have this here because v1 version of FlashList is highly incompatible with new arch ios, while v2 is only compatible with new arch.
+// This is a temporary compatibility layer between FlashList v1(1.7.2) and v2(2.2.0), so that we can use v2 on new arch iOS and v1 elsewhere
+// We need to have this here because v1 version of FlashList is highly incompatible with new arch iOS, while v2 is only compatible with new arch.
 // We will get rid of this file and v1/v2 folders, as soon as we end iOS new arch migration.
+
+import { Platform } from "react-native";
 
 import { isNewArch } from "./v2/src/isNewArch";
 // v1
@@ -32,8 +34,9 @@ import {
   Cancellable as CancellableV2,
 } from "./v2/src/benchmark/AutoScrollHelper";
 
-console.log("kubson new arch:", isNewArch());
-export const FlashList = isNewArch() ? FlashListV2 : FlashListV1;
+const useV2 = isNewArch() && Platform.OS === "ios";
+
+export const FlashList = useV2 ? FlashListV2 : FlashListV1;
 
 export type FlashListProps<TItem> = FlashListPropsV1<TItem> &
   FlashListPropsV2<TItem>;
@@ -51,7 +54,7 @@ export {
   BlankAreaEvent, // ATTENTION, doesn't exist in v2, better not use
 } from "./v1/native/auto-layout/AutoLayoutView"; // ATTENTION, doesn't exist in v2, better not use
 
-export const useBenchmark = isNewArch() ? useBenchmarkV2 : useBenchmarkV1;
+export const useBenchmark = useV2 ? useBenchmarkV2 : useBenchmarkV1;
 export type BenchmarkParams = BenchmarkParamsV1 & BenchmarkParamsV2; // startManually only works for v2, rest is the same
 export type BenchmarkResult = BenchmarkResultV1 & BenchmarkResultV2; // blankArea only works for v1, rest is the same
 
@@ -68,9 +71,7 @@ export {
   BlankAreaTrackerConfig,
 } from "./v1/benchmark/useBlankAreaTracker"; // ATTENTION, doesn't exist in v2, better not use
 
-export const MasonryFlashList = isNewArch()
-  ? MasonryFlashListV2
-  : MasonryFlashListV1;
+export const MasonryFlashList = useV2 ? MasonryFlashListV2 : MasonryFlashListV1;
 export {
   MasonryFlashListProps, // ATTENTION, not every v1 Masonry prop exists in v2
   MasonryFlashListScrollEvent,
@@ -80,11 +81,11 @@ export {
   MasonryListRenderItemInfo,
 } from "./v1/MasonryFlashList"; // ATTENTION, not every v1 Masonry prop exists in v2
 
-export const JSFPSMonitor = isNewArch() ? JSFPSMonitorV2 : JSFPSMonitorV1;
+export const JSFPSMonitor = useV2 ? JSFPSMonitorV2 : JSFPSMonitorV1;
 export { JSFPSResult } from "./v1/benchmark/JSFPSMonitor"; // v1/v2 are the same
 
-export const autoScroll = isNewArch() ? autoScrollV2 : autoScrollV1;
-export const Cancellable = isNewArch() ? CancellableV2 : CancellableV1;
+export const autoScroll = useV2 ? autoScrollV2 : autoScrollV1;
+export const Cancellable = useV2 ? CancellableV2 : CancellableV1;
 export { default as ViewToken } from "./v1/viewability/ViewToken"; // v1/v2 are the same
 export { default as CellContainer } from "./v1/native/cell-container/CellContainer"; // ATTENTION, doesn't exist in v2, better not use
 
