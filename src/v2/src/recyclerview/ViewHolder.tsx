@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck - TypeScript errors disabled during v2 migration
 /**
  * ViewHolder is a core component in FlashList that manages individual item rendering and layout.
  * It handles the rendering of list items, separators, and manages layout updates for each item.

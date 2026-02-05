@@ -6,6 +6,8 @@ import {
   ViewStyle,
 } from "react-native";
 
+import { ContentStyle } from "../../v1/FlashListProps";
+
 import ViewToken from "./recyclerview/viewability/ViewToken";
 
 export interface ListRenderItemInfo<TItem> {
@@ -53,7 +55,10 @@ export type ViewabilityConfigCallbackPairs<TItem> =
   ViewabilityConfigCallbackPair<TItem>[];
 
 export interface FlashListProps<TItem>
-  extends Omit<ScrollViewProps, "maintainVisibleContentPosition"> {
+  extends Omit<
+    ScrollViewProps,
+    "maintainVisibleContentPosition" | "contentContainerStyle"
+  > {
   /**
    * Takes an item from `data` and renders it into the list. Typical usage:
    * ```ts
@@ -287,6 +292,10 @@ export interface FlashListProps<TItem>
   viewabilityConfigCallbackPairs?:
     | ViewabilityConfigCallbackPairs<TItem>
     | undefined;
+
+  // This is a temporary type fix for the time of FlashList v1 -> v2 migration
+  // TODO: Remove this when getting rid of v1
+  contentContainerStyle?: ContentStyle;
 
   /**
    * New arch only

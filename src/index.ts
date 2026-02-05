@@ -37,6 +37,7 @@ import {
 const useV2 = isNewArch() && Platform.OS === "ios";
 
 export const FlashList = useV2 ? FlashListV2 : FlashListV1;
+export { FlashListV1 }; // we need to export v1 version to keep the ref types compatible
 
 export type FlashListProps<TItem> = FlashListPropsV1<TItem> &
   FlashListPropsV2<TItem>;
@@ -71,7 +72,9 @@ export {
   BlankAreaTrackerConfig,
 } from "./v1/benchmark/useBlankAreaTracker"; // ATTENTION, doesn't exist in v2, better not use
 
-export const MasonryFlashList = useV2 ? MasonryFlashListV2 : MasonryFlashListV1;
+export const MasonryFlashList = useV2
+  ? (MasonryFlashListV2 as typeof MasonryFlashListV1)
+  : MasonryFlashListV1;
 export {
   MasonryFlashListProps, // ATTENTION, not every v1 Masonry prop exists in v2
   MasonryFlashListScrollEvent,
