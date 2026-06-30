@@ -78,10 +78,15 @@ export default class ViewabilityManager<T> {
     const scrollOffset =
       (this.rvManager.getAbsoluteLastScrollOffset() ?? 0) -
       this.rvManager.firstItemOffset;
+
+    const bottomViewabilityInset =
+      this.rvManager.props.bottomViewabilityInsetRef?.current ?? 0;
+
     this.viewabilityHelpers.forEach((viewabilityHelper) => {
       viewabilityHelper.updateViewableItems(
         this.rvManager.props.horizontal ?? false,
         scrollOffset,
+        bottomViewabilityInset,
         listSize,
         (index: number) => this.rvManager.getLayout(index),
         newViewableIndices

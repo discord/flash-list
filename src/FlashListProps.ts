@@ -329,6 +329,13 @@ export interface FlashListProps<TItem>
     | undefined;
 
   /**
+   * If the FlashList is in a bottom sheet, some rendered items can be off screen.
+   * The value in this ref represents the height of the off-screen area, so onViewableItemsChanged
+   * can consider the visible area of the bottom sheet in its calculations.
+   */
+  bottomViewabilityInsetRef?: React.MutableRefObject<number>;
+
+  /**
    * New arch only
    * Maximum number of items in the recycle pool. These are the items that are cached in the recycle pool when they are scrolled off the screen.
    * Unless you have a huge number of item types, you shouldn't need to set this.

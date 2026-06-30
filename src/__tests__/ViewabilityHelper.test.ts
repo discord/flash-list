@@ -32,6 +32,27 @@ describe("ViewabilityHelper", () => {
     expect(viewableIndicesChanged).not.toHaveBeenCalled();
   });
 
+  it("excludes items hidden behind the bottom viewability inset", () => {
+    const viewabilityHelper = new ViewabilityHelper(
+      null,
+      viewableIndicesChanged
+    );
+    viewabilityHelper.possiblyViewableIndices = [0, 1, 2, 3];
+
+    // Without an inset, items 0, 1, 2 are viewable in the 300px list
+    updateViewableItems({ viewabilityHelper });
+    expect(viewableIndicesChanged).toHaveBeenCalledWith(
+      [0, 1, 2],
+      [0, 1, 2],
+      []
+    );
+
+    // A 100px bottom inset shrinks the visible area to 200px, so item 2
+    // (y: 200-300) is now hidden behind the inset
+    updateViewableItems({ viewabilityHelper, bottomViewabilityInset: 100 });
+    expect(viewableIndicesChanged).toHaveBeenCalledWith([0, 1], [], [2]);
+  });
+
   it("reports only viewable indices", () => {
     const viewabilityHelper = new ViewabilityHelper(
       null,
@@ -255,6 +276,7 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper,
     horizontal,
     scrollOffset,
+    bottomViewabilityInset,
     listSize,
     getLayout,
     runAllTimers,
@@ -262,6 +284,7 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper: ViewabilityHelper;
     horizontal?: boolean;
     scrollOffset?: number;
+    bottomViewabilityInset?: number;
     listSize?: RVDimension;
     getLayout?: (index: number) => RVLayout | undefined;
     runAllTimers?: boolean;
@@ -269,6 +292,7 @@ describe("ViewabilityHelper", () => {
     viewabilityHelper.updateViewableItems(
       horizontal ?? false,
       scrollOffset ?? 0,
+      bottomViewabilityInset ?? 0,
       listSize ?? { height: 300, width: 300 },
       getLayout ??
         ((index) => {
