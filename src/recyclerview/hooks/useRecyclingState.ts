@@ -25,7 +25,7 @@ export function useRecyclingState<T>(
   onReset?: () => void
 ): [T, RecyclingStateSetter<T>] {
   // Store the current state value in a ref to persist between renders
-  const valueStore = useRef<T>();
+  const valueStore = useRef<T | undefined>(undefined);
   // Use layoutState to trigger re-renders when state changes
   const [_, setCounter] = useLayoutState(0);
 

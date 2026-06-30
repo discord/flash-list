@@ -39,7 +39,7 @@ export interface StickyHeaderProps<TItem> {
   /** Function to render each item */
   renderItem: FlashListProps<TItem>["renderItem"];
   /** Ref to access sticky header methods */
-  stickyHeaderRef: React.RefObject<StickyHeaderRef>;
+  stickyHeaderRef: React.RefObject<StickyHeaderRef | null>;
   /** zIndex applied to the sticky header container */
   stickyHeaderZIndex?: number;
   /** Manager for recycler view operations */

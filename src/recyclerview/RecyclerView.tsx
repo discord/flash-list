@@ -530,7 +530,9 @@ const RecyclerViewComponent = <T,>(
 
   // Render the main RecyclerView structure
   return (
-    <RecyclerViewContextProvider value={recyclerViewContext}>
+    <RecyclerViewContextProvider
+      value={recyclerViewContext as RecyclerViewContext<unknown>}
+    >
       <CompatView
         style={[
           {

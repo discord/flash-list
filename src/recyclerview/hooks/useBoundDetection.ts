@@ -18,7 +18,7 @@ import { useUnmountAwareAnimationFrame } from "./useUnmountAwareCallbacks";
  */
 export function useBoundDetection<T>(
   recyclerViewManager: RecyclerViewManager<T>,
-  scrollViewRef: React.RefObject<CompatScroller>
+  scrollViewRef: React.RefObject<CompatScroller | null>
 ) {
   // Track whether we've already triggered the end reached callback to prevent duplicate calls
   const pendingEndReached = useRef(false);

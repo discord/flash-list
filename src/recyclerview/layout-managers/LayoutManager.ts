@@ -16,16 +16,16 @@ import { ErrorMessages } from "../../errors/ErrorMessages";
  */
 export abstract class RVLayoutManager {
   /** Whether the layout is horizontal (true) or vertical (false) */
-  protected horizontal: boolean;
+  protected horizontal!: boolean;
   /** Array of layout information for all items */
   protected layouts: RVLayout[];
   /** Dimensions of the visible window/viewport */
-  protected windowSize: RVDimension;
+  protected windowSize!: RVDimension;
   /** Maximum number of columns in the layout */
-  protected maxColumns: number;
+  protected maxColumns!: number;
 
   /** Whether to optimize item placement for better space utilization */
-  protected optimizeItemArrangement: boolean;
+  protected optimizeItemArrangement!: boolean;
 
   /** Flag indicating if the layout requires repainting */
   public requiresRepaint = false;

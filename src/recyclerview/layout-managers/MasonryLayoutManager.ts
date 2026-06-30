@@ -15,7 +15,7 @@ export class RVMasonryLayoutManagerImpl extends RVLayoutManager {
   /** The width of the bounded area for the masonry layout */
   private boundedSize: number;
   /** Array tracking the current height of each column */
-  private columnHeights: number[];
+  private columnHeights!: number[];
   /** Current column index for sequential placement */
   private currentColumn = 0;
 

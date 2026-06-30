@@ -296,6 +296,17 @@ export interface FlashListRef<T> {
   recomputeViewableItems: () => void;
 
   /**
+   * Recalculates viewable items against the current scroll position and fires
+   * viewability callbacks for any changes.
+   *
+   * Unlike `recomputeViewableItems`, this does not reset the previously
+   * reported viewable items, so no change is reported when visibility is
+   * unchanged. Useful when an external value affecting visibility changes
+   * (e.g. `bottomViewabilityInsetRef`) without a scroll event.
+   */
+  updateViewableItems: () => void;
+
+  /**
    * Disables item recycling in preparation for layout animations.
    *
    * Call this before performing layout animations to prevent visual glitches.

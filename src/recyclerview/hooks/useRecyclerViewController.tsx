@@ -45,8 +45,8 @@ import { useUnmountAwareTimeout } from "./useUnmountAwareCallbacks";
 export function useRecyclerViewController<T>(
   recyclerViewManager: RecyclerViewManager<T>,
   ref: React.Ref<FlashListRef<T>>,
-  scrollViewRef: RefObject<CompatScroller>,
-  scrollAnchorRef: React.RefObject<ScrollAnchorRef>
+  scrollViewRef: RefObject<CompatScroller | null>,
+  scrollAnchorRef: React.RefObject<ScrollAnchorRef | null>
 ) {
   const isUnmounted = useUnmountFlag();
   const [_, setRenderId] = useState(0);
@@ -553,6 +553,9 @@ export function useRecyclerViewController<T>(
       },
       recomputeViewableItems: () => {
         recyclerViewManager.recomputeViewableItems();
+      },
+      updateViewableItems: () => {
+        recyclerViewManager.computeItemViewability();
       },
       /**
        * Disables item recycling in preparation for layout animations.

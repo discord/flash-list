@@ -308,7 +308,8 @@ export class RenderStackManager {
   private getKeyFromRecyclePool(itemType: string) {
     const pool = this.getRecyclePoolForType(itemType);
     if (pool.size > 0) {
-      const key = pool.values().next().value;
+      // pool.size > 0 guarantees the iterator yields a value
+      const key = pool.values().next().value!;
       pool.delete(key);
       return key;
     }

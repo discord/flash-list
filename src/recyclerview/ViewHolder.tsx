@@ -170,7 +170,10 @@ export const ViewHolder = React.memo(
       prevProps.inverted === nextProps.inverted
     );
   }
-);
+  // React.memo erases the generic from ViewHolderInternal, collapsing props to
+  // ViewHolderProps<unknown>. Cast back to the generic signature so callers can
+  // pass renderItem typed for their own TItem (required under strictFunctionTypes).
+) as unknown as typeof ViewHolderInternal;
 
 /**
  * Compares two RVLayout objects to determine if they are equal
